@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İlk 8 Mövzu — 11-ci sinif Riyaziyyat Testi</title>
+<style>
+:root{
+  --mint:#c9f7df; --mint2:#8ee7bd;
+  --blue:#c9edff; --blue2:#83cfff;
+  --pink:#ffd1e2; --pink2:#ff9fc4;
+  --cream:#fff8ed; --ink:#25344a; --white:#fff;
+  --good:#20a568; --bad:#e85d75; --shadow:0 18px 45px rgba(53,78,104,.16);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink); background:
+  radial-gradient(circle at 10% 10%, #d8fff0 0 12%, transparent 28%),
+  radial-gradient(circle at 90% 15%, #d9f3ff 0 12%, transparent 30%),
+  linear-gradient(135deg,#fff 0%,#f8fbff 50%,#fff6fb 100%);
+  min-height:100vh;
+}
+header{
+  position:sticky; top:0; z-index:10; padding:18px 22px;
+  background:rgba(255,255,255,.82); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(37,52,74,.08);
+}
+.top{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:900;font-size:clamp(18px,3vw,28px)}
+.sub{font-size:13px;opacity:.7}
+.progress{width:min(340px,42vw);height:12px;border-radius:99px;background:#eaf0f6;overflow:hidden}
+.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mint2),var(--blue2),var(--pink2));border-radius:99px;transition:.25s}
+main{max-width:1180px;margin:34px auto;padding:0 18px 70px}
+.hero{
+  position:relative; overflow:hidden; padding:30px; border-radius:30px;
+  background:linear-gradient(135deg,var(--mint),var(--blue) 55%,var(--pink));
+  box-shadow:var(--shadow); margin-bottom:28px;
+}
+.hero h1{margin:0 0 8px;font-size:clamp(28px,5vw,48px)}
+.hero p{margin:0;max-width:720px;line-height:1.6}
+.hero .badge{display:inline-block;margin-top:15px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);font-weight:700}
+.cube{
+  position:absolute;right:7%;top:35px;width:86px;height:86px;transform-style:preserve-3d;
+  transform:rotateX(-22deg) rotateY(34deg) rotateZ(7deg);animation:float 4s ease-in-out infinite;
+}
+.cube span{position:absolute;inset:0;border:2px solid rgba(37,52,74,.13);background:rgba(255,255,255,.42)}
+.cube .front{transform:translateZ(43px)} .cube .back{transform:rotateY(180deg) translateZ(43px)}
+.cube .right{transform:rotateY(90deg) translateZ(43px)} .cube .left{transform:rotateY(-90deg) translateZ(43px)}
+.cube .top{transform:rotateX(90deg) translateZ(43px)} .cube .bottom{transform:rotateX(-90deg) translateZ(43px)}
+@keyframes float{50%{transform:rotateX(-28deg) rotateY(65deg) translateY(-9px)}}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{
+  background:rgba(255,255,255,.88); border:1px solid rgba(37,52,74,.08);
+  border-radius:22px; padding:21px; box-shadow:0 10px 28px rgba(53,78,104,.08);
+  transition:.2s; position:relative;
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 15px 34px rgba(53,78,104,.12)}
+.num{
+  display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;
+  border-radius:12px;background:linear-gradient(135deg,var(--mint),var(--blue));font-weight:900;margin-bottom:10px;
+}
+.question{font-size:17px;font-weight:750;line-height:1.55;margin:0 0 15px}
+.options{display:grid;gap:9px}
+.option{
+  display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:14px;
+  background:#f7faff;border:1px solid #e7eef6;cursor:pointer;transition:.15s;
+}
+.option:hover{background:#eefaff;border-color:#bfe4f5}
+.option input{accent-color:#43b98b;margin-top:3px}
+.answer{
+  width:100%;padding:11px 12px;border-radius:13px;border:1px solid #dce7f0;
+  font-size:16px;outline:none;background:#fff;
+}
+.answer:focus{border-color:#83cfff;box-shadow:0 0 0 4px rgba(131,207,255,.18)}
+.card.correct{border:2px solid #69d4a0;background:#f2fff8}
+.card.wrong{border:2px solid #ff9db0;background:#fff5f7}
+.result{
+  display:none;margin:25px 0;padding:24px;border-radius:24px;background:#fff;
+  box-shadow:var(--shadow);text-align:center;border:1px solid #e8eef4;
+}
+.result.show{display:block}
+.score{font-size:48px;font-weight:950;margin:4px}
+.message{font-size:18px;font-weight:700}
+.review{margin-top:16px;text-align:left;display:grid;gap:8px}
+.review div{padding:10px 13px;border-radius:12px;background:#f7f9fc}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+button{
+  border:0;border-radius:15px;padding:13px 22px;font-weight:850;font-size:16px;cursor:pointer;
+  box-shadow:0 7px 18px rgba(45,85,110,.15);transition:.15s;
+}
+button:hover{transform:translateY(-2px)}
+.primary{background:linear-gradient(135deg,var(--mint2),#66c9ef);color:#153347}
+.secondary{background:var(--pink);color:#62364a}
+.smallnote{font-size:12px;opacity:.65;margin-top:9px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.cube{opacity:.35;right:-10px}.hero{padding:24px}.top{align-items:flex-start}.progress{width:150px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div><div class="brand">📚 İlk 8 Mövzu</div><div class="sub">11-ci sinif • Riyaziyyat sınağı</div></div>
+    <div>
+      <div class="sub" id="counter">0 / 25 cavablandırılıb</div>
+      <div class="progress"><i id="bar"></i></div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="cube">
+    <span class="front"></span><span class="back"></span><span class="right"></span>
+    <span class="left"></span><span class="top"></span><span class="bottom"></span>
+  </div>
+  <h1>Riyaziyyat Testi ✨</h1>
+  <p>25 sualı cavablandır, sonra <b>“Nəticəni yoxla”</b> düyməsinə bas. Sistem düzgün cavabları avtomatik yoxlayacaq və səhvləri göstərəcək.</p>
+  <span class="badge">🌿 Yaşıl • 🩵 Açıq mavi • 🌸 Pastel çəhrayı</span>
+</section>
+
+<form id="quiz" class="grid"></form>
+
+<section id="result" class="result">
+  <div class="score" id="score">0 / 25</div>
+  <div class="message" id="message"></div>
+  <div id="review" class="review"></div>
+  <div class="actions">
+    <button type="button" class="primary" onclick="window.scrollTo({top:0,behavior:'smooth'})">🔁 Cavablara bax</button>
+    <button type="button" class="secondary" onclick="resetQuiz()">↺ Yenidən başla</button>
+  </div>
+</section>
+</main>
+
+<script>
+const questions = [
+ {n:1,q:"İki natural ədədin ƏBOB-u 6, ƏKOB-u isə 72-dir. Bu ədədlərin hasilini tapın.",o:["432","216","144","72","864"],a:"432",l:"A"},
+ {n:2,q:"Sonsuz dövri onluq kəsrlər üçün 0,(6) + 0,(3) cəmini hesablayın.",o:["0,(8)","1","0,9","1,(1)","0,99"],a:"1",l:"B"},
+ {n:3,q:"Malın qiyməti əvvəlcə 20% artırıldı, daha sonra isə yeni qiyməti 20% azaldıldı. Malın ilkin qiyməti necə dəyişdi?",o:["4% artdı","Dəyişmədi","4% azaldı","2% azaldı","2% artdı"],a:"4% azaldı",l:"C"},
+ {n:4,q:"|x − 3| ≤ 4 bərabərsizliyini ödəyən bütün tam ədədlərin cəmini hesablayın.",o:["18","21","24","27","30"],a:"27",l:"D"},
+ {n:5,q:"M = −5x⁴y⁷z² birhədlisinin dərəcəsini tapın.",o:["−5","7","4","12","9"],a:"9",l:"E"},
+ {n:6,q:"x³ − 27 çoxhədlisinin vuruqlarından biri hansıdır?",o:["x + 3","x² − 3x + 9","x² + 3x + 9","x² − 9","x² + 6x + 9"],a:"x² + 3x + 9",l:"C"},
+ {n:7,q:"(x² − 16) / (x² − 8x + 16) rasional kəsrini ixtisar edin.",o:["(x + 4)/(x − 4)","(x − 4)/(x + 4)","x + 4","x − 4","1/(x − 4)"],a:"(x + 4)/(x − 4)",l:"A"},
+ {n:8,q:"√50 − √18 + √8 ifadəsini sadələşdirin.",o:["3√2","4√2","2√2","√2","5√2"],a:"3√2",l:"A"},
+ {n:9,q:"x, y və z ədədləri uyğun olaraq 2, 3 və 5 ədədləri ilə düz mütənasibdir. Bu ədədlərin cəmi 60 olarsa, ən böyük ədədi tapın.",o:["12","18","20","25","30"],a:"30",l:"E"},
+ {n:10,q:"120 ədədinin natural bölənlərinin sayını tapın.",o:["10","12","14","16","18"],a:"16",l:"D"},
+ {n:11,q:"Tərkibində 20% duz olan 40 litr məhlula 10 litr təmiz su əlavə olundu. Alınan yeni məhlulun duzluluq faizini tapın.",o:["12%","16%","15%","15%","20%"],a:"16%",l:"B"},
+ {n:12,q:"Aşağıdakı irrasional ədədlərdən hansı ən böyükdür?",o:["3√5","4√3","5√2","2√11","6"],a:"5√2",l:"C"},
+ {n:13,q:"a + b = 6 və ab = 8 olarsa, a² + b² ifadəsinin qiymətini tapın.",o:["20","24","16","28","32"],a:"20",l:"A"},
+ {n:14,q:"12/(√7 − 1) − 2√7 ifadəsinin qiymətini hesablayın.",input:true,a:"2"},
+ {n:15,q:"(x³ + 64)/(x + 4) − 4x ifadəsini sadələşdirin və x = 5 olduqda onun qiymətini hesablayın.",input:true,a:"1"},
+ {n:16,q:"Köynəyin qiyməti 60 manatdır. Onun qiyməti əvvəlcə 20% ucuzlaşdırıldı, bir müddət sonra isə yeni qiymət 25% bahalaşdırıldı. Köynəyin son qiyməti neçə manatdır?",input:true,a:"60"},
+ {n:17,q:"Verilmiş cəmi hesablayın: 1/(2·3) + 1/(3·4) + ... + 1/(11·12)",input:true,a:"5/12"},
+ {n:18,q:"√(14 − 6√5) + √5 ifadəsini tam sadələşdirin və onun tam hissəsini tapın.",input:true,a:"3"},
+ {n:19,q:"x² + y² − 6x + 8y + 25 = 0 tənliyini ödəyən x və y ədədlərinin hasilini (x·y) tapın.",input:true,a:"-12"},
+ {n:20,q:"Yaş üzüm qurudulduqda öz kütləsinin 75%-ni itirir. 40 kq quru üzüm almaq üçün neçə kiloqram yaş üzüm lazımdır?",input:true,a:"160"},
+ {n:21,q:"Rasional ifadəni tam sadələşdirin: (x/(x−y) − x/(x+y)) · ((x²−y²)/(2xy))",input:true,a:"1"},
+ {n:22,q:"−4 < x < 3 aralığında olduqda √(x² − 6x + 9) + √(x² + 8x + 16) ifadəsini modul işarəsindən istifadə etmədən sadələşdirin.",input:true,a:"7"},
+ {n:23,q:"Eyni məhsuldarlıqla çalışan 8 fəhlə müəyyən bir işi 15 günə görür. Eyni işi 10 günə bitirmək üçün işə əlavə olaraq neçə fəhlə cəlb olunmalıdır?",input:true,a:"4"},
+ {n:24,q:"İkirəqəmli ab ədədi üçün ba − ab = 36 və rəqəmlərinin cəmi a + b = 10 olarsa, bu ədədin rəqəmlər hasilini (a·b) tapın.",input:true,a:"21"},
+ {n:25,q:"6/√(10 − 2) kəsrinin məxrəcini irrasionallıqdan azad edin və alınmış ədədin tam hissəsini tapın.",input:true,a:"5"}
+];
+
+const form=document.getElementById('quiz');
+const letters=['A','B','C','D','E'];
+
+function render(){
+  form.innerHTML=questions.map(q=>{
+    const opts=q.o ? `<div class="options">${q.o.map((x,i)=>`
+      <label class="option"><input type="radio" name="q${q.n}" value="${esc(x)}"><span><b>${letters[i]})</b> ${x}</span></label>`).join('')}</div>` :
+      `<input class="answer" name="q${q.n}" autocomplete="off" placeholder="Cavabınızı yazın..."><div class="smallnote">Məsələn: 2, 5/12, -12</div>`;
+    return `<article class="card" id="card${q.n}"><div class="num">${q.n}</div><p class="question">${q.q}</p>${opts}</article>`;
+  }).join('');
+  form.addEventListener('change',updateProgress);
+  form.addEventListener('input',updateProgress);
+}
+function esc(s){return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
+function norm(s){
+  return String(s??'').trim().toLowerCase().replaceAll('−','-').replace(/\s+/g,'')
+    .replaceAll('√','sqrt').replaceAll('·','*').replaceAll(',','.');
+}
+function updateProgress(){
+  let count=0;
+  questions.forEach(q=>{
+    const el=q.o ? document.querySelector(`input[name="q${q.n}"]:checked`) : document.querySelector(`[name="q${q.n}"]`);
+    if(el && String(el.value).trim()) count++;
+  });
+  document.getElementById('counter').textContent=`${count} / 25 cavablandırılıb`;
+  document.getElementById('bar').style.width=(count/25*100)+'%';
+}
+function check(){
+  let score=0; const review=[];
+  questions.forEach(q=>{
+    const card=document.getElementById('card'+q.n);
+    card.classList.remove('correct','wrong');
+    const el=q.o ? document.querySelector(`input[name="q${q.n}"]:checked`) : document.querySelector(`[name="q${q.n}"]`);
+    const given=el?el.value:'';
+    const ok=norm(given)===norm(q.a);
+    if(ok){score++;card.classList.add('correct')}
+    else {card.classList.add('wrong');review.push(`<div><b>${q.n}.</b> ${given?`Sizin cavab: <b>${given}</b> • `:'Cavab verilməyib • '}Düzgün cavab: <b>${q.a}</b>${q.l?` (${q.l})`:''}</div>`)}
+  });
+  document.getElementById('score').textContent=`${score} / 25`;
+  document.getElementById('message').textContent=score===25?'🎉 Əla! Bütün cavablar doğrudur!':
+    score>=20?'🌟 Çox yaxşı nəticə!':score>=15?'👏 Yaxşı nəticə!':score>=10?'💪 Bir az da məşq et!':'📚 Mövzuları təkrar edib yenidən sına.';
+  document.getElementById('review').innerHTML=review.length?`<b>Səhvlər və boş cavablar:</b>${review.join('')}`:'<b>✨ Səhv yoxdur!</b>';
+  const r=document.getElementById('result');r.classList.add('show');
+  r.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetQuiz(){
+  document.getElementById('quiz').reset();
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('correct','wrong'));
+  document.getElementById('result').classList.remove('show');
+  updateProgress(); window.scrollTo({top:0,behavior:'smooth'});
+}
+form.addEventListener('submit',e=>e.preventDefault());
+const btn=document.createElement('div');
+btn.className='actions';
+btn.innerHTML='<button type="button" class="primary" id="checkBtn">✅ Nəticəni yoxla</button><button type="button" class="secondary" onclick="resetQuiz()">↺ Təmizlə</button>';
+form.after(btn);
+document.getElementById('checkBtn').onclick=check;
+render(); updateProgress();
+</script>
+</body>
+</html>
